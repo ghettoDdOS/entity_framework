@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    ports:
+      - 1433:1433
+    environment:
+      SA_PASSWORD: "myStr0n7PaSS"
+      ACCEPT_EULA: "Y"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: dotnet run
+    volumes:
+      - ./:/app
+    depends_on:
+      - db
+
+volumes:
+  mssql-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: "docker/db"
+      o: bind
