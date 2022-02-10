@@ -6,7 +6,11 @@ namespace HelloApp
 {
   class ApplicationContext : DbContext
   {
-    public DbSet<User> Users { get; set; }
+    // public DbSet<User> Users { get; set; }
+    public DbSet<Order> OrderList { get; set; }
+    // public DbSet<OrderType> OrderTypes { get; set; }
+    // public DbSet<OrderVeriety> OrderVerieties { get; set; }
+    // public DbSet<Currency> Currencies { get; set; }
     public ApplicationContext()
     {
       Database.EnsureCreated();
